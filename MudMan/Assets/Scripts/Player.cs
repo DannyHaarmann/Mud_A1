@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    // Start is called before the first frame update
-    void Start()
+    private string name;
+    private int killCount;
+
+    public Player(string name)
     {
-        
+        this.name = name;
+        this.killCount = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void addKill()
     {
-        
+        this.killCount++;
+    }
+
+    public int getKillCount()
+    {
+        return this.killCount;
+    }
+
+    public string getName()
+    {
+        return this.name;
     }
 }
