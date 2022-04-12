@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemey  : MonoBehaviour
+public class Enemey : MonoBehaviour
 {
     private int count;
+    public GameObject thePlayer;
+    private Vector3 playerPosition;
     private Rigidbody rb;
+    public float speed = 20f;
+    private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start() //like a constructor
     {
-        rb = this.gameObject.GetComponent<Rigidbody>();
-
         count = 0;
-
-        rb.velocity = new Vector3(Random.Range(-6, 6), 0, Random.Range(-6, 6));
+        rb = this.gameObject.GetComponent<Rigidbody>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent.speed = 5f;
+        //agent.Warp(thePlayer.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -34,6 +39,6 @@ public class Enemey  : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        agent.SetDestination(thePlayer.transform.position);
     }
 }
