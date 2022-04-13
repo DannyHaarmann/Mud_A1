@@ -11,6 +11,7 @@ public class Enemey : MonoBehaviour
     private Rigidbody rb;
     public float speed = 20f;
     private NavMeshAgent agent;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start() //like a constructor
@@ -19,6 +20,7 @@ public class Enemey : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         agent.speed = 5f;
+        animator = GetComponent<Animator>();
         //agent.Warp(thePlayer.transform.position);
     }
 
@@ -40,5 +42,6 @@ public class Enemey : MonoBehaviour
     void Update()
     {
         agent.SetDestination(thePlayer.transform.position);
+        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 }
